@@ -15,10 +15,14 @@ import ProductsListing from "./pages/shopping-veiw/ProductsListing";
 import Checkout from "./pages/shopping-veiw/checkout";
 import Account from "./pages/shopping-veiw/Account";
 import CheckAuth from "./components/common/CheckAuth";
+import UnAuth from "./pages/UnAuth/UnAuth";
 
 const App = () => {
-  const isAuthenticated = false;
-  const user = null;
+  const isAuthenticated = true;
+  const user = {
+    name: "Dev Bhattacharya",
+    role: "admin",
+  };
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
@@ -60,6 +64,7 @@ const App = () => {
           <Route path="account" element={<Account />}></Route>
         </Route>
         <Route path="*" element={<NotFound />}></Route>
+        <Route path="/unauth" element={<UnAuth />}></Route>
       </Routes>
     </div>
   );
