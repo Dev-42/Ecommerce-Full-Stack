@@ -14,22 +14,46 @@ import Home from "./pages/shopping-veiw/home";
 import ProductsListing from "./pages/shopping-veiw/ProductsListing";
 import Checkout from "./pages/shopping-veiw/checkout";
 import Account from "./pages/shopping-veiw/Account";
+import CheckAuth from "./components/common/CheckAuth";
 
 const App = () => {
+  const isAuthenticated = false;
+  const user = null;
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
-        <Route path="/auth" element={<AuthLayout />}>
+        <Route
+          path="/auth"
+          element={
+            <CheckAuth isAuth={isAuthenticated} user={user}>
+              <AuthLayout />
+            </CheckAuth>
+          }
+        >
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>
         </Route>
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <CheckAuth isAuth={isAuthenticated} user={user}>
+              <AdminLayout />
+            </CheckAuth>
+          }
+        >
           <Route path="dashboard" element={<Dashboard />}></Route>
           <Route path="products" element={<Products />}></Route>
           <Route path="orders" element={<Orders />}></Route>
           <Route path="features" element={<Features />}></Route>
         </Route>
-        <Route path="/shop" element={<ShoppingLayout />}>
+        <Route
+          path="/shop"
+          element={
+            <CheckAuth isAuth={isAuthenticated} user={user}>
+              <ShoppingLayout />
+            </CheckAuth>
+          }
+        >
           <Route path="home" element={<Home />}></Route>
           <Route path="products" element={<ProductsListing />}></Route>
           <Route path="checkout" element={<Checkout />}></Route>
