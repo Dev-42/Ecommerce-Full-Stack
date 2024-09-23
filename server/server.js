@@ -4,6 +4,8 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+const authRouter = require("./routes/auth/auth.routes");
+
 const PORT = process.env.PORT || 5000;
 
 const main = async () => {
@@ -35,6 +37,9 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.json());
+
+// Routes
+app.use("/api/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started at PORT ${PORT}`);
