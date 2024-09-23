@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { TextField, Button, Box, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../store/auth-slice/index";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [formValues, setFormValues] = useState({
@@ -16,10 +19,15 @@ const RegisterForm = () => {
     });
   };
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission logic
     console.log("Form Values:", formValues);
+    // once the user is logged in navigate the user to the login page
+    dispatch(registerUser(formValues)).then((data) => console.log(data));
   };
 
   return (
