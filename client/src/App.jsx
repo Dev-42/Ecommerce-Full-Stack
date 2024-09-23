@@ -2,7 +2,7 @@
 import { Route, Routes } from "react-router-dom";
 import AuthLayout from "./components/auth/AuthLayout";
 import Login from "./pages/auth/Login";
-import Register from "./pages/auth/register";
+import Register from "./pages/auth/Register";
 import AdminLayout from "./components/admin-veiw/AdminLayout";
 import Dashboard from "./pages/admin-view/Dashboard";
 import Products from "./pages/admin-view/Products";
@@ -18,11 +18,8 @@ import CheckAuth from "./components/common/CheckAuth";
 import UnAuth from "./pages/UnAuth/UnAuth";
 
 const App = () => {
-  const isAuthenticated = true;
-  const user = {
-    name: "Dev Bhattacharya",
-    role: "admin",
-  };
+  const isAuthenticated = false;
+  const user = null;
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
