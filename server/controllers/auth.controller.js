@@ -6,11 +6,11 @@ const UserModel = require(".././models/User.model");
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
   try {
-    const hashPassword = await bcrypt.hashSync(password, 12);
+    const hashPassword = await bcrypt.hash(password, 12);
     const newUser = new UserModel({
       username,
       email,
-      hashPassword,
+      password: hashPassword,
     });
     await newUser.save();
     res.status(200).json({
