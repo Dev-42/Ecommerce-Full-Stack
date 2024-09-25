@@ -16,17 +16,18 @@ import Checkout from "./pages/shopping-veiw/checkout";
 import Account from "./pages/shopping-veiw/Account";
 import CheckAuth from "./components/common/CheckAuth";
 import UnAuth from "./pages/UnAuth/UnAuth";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const isAuthenticated = false;
-  const user = null;
+  // using redux to fetch our user and authentication details
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
         <Route
           path="/auth"
           element={
-            <CheckAuth isAuth={isAuthenticated} user={user}>
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <AuthLayout />
             </CheckAuth>
           }
@@ -37,7 +38,7 @@ const App = () => {
         <Route
           path="/admin"
           element={
-            <CheckAuth isAuth={isAuthenticated} user={user}>
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <AdminLayout />
             </CheckAuth>
           }
@@ -50,7 +51,7 @@ const App = () => {
         <Route
           path="/shop"
           element={
-            <CheckAuth isAuth={isAuthenticated} user={user}>
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <ShoppingLayout />
             </CheckAuth>
           }

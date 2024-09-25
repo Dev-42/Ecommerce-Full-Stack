@@ -1,12 +1,12 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-const CheckAuth = ({ isAuth, user, children }) => {
+const CheckAuth = ({ isAuthenticated, user, children }) => {
   const location = useLocation();
 
   // If the user is not authenticated and tries to access other pages, navigate to login/register
   if (
-    !isAuth &&
+    !isAuthenticated &&
     !(
       location?.pathname?.includes("/login") ||
       location?.pathname?.includes("/register")
@@ -17,7 +17,7 @@ const CheckAuth = ({ isAuth, user, children }) => {
 
   // If the user is authenticated, redirect based on their role
   if (
-    isAuth &&
+    isAuthenticated &&
     (location?.pathname?.includes("/login") ||
       location?.pathname?.includes("/register"))
   ) {
@@ -30,7 +30,7 @@ const CheckAuth = ({ isAuth, user, children }) => {
 
   // If the user is authenticated but not an admin, redirect from admin pages
   if (
-    isAuth &&
+    isAuthenticated &&
     user?.role !== "admin" &&
     location?.pathname?.includes("/admin")
   ) {
@@ -39,7 +39,7 @@ const CheckAuth = ({ isAuth, user, children }) => {
 
   // If the user is an admin, redirect from shop pages
   if (
-    isAuth &&
+    isAuthenticated &&
     user?.role === "admin" &&
     location?.pathname?.includes("/shop")
   ) {
